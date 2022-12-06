@@ -1,15 +1,7 @@
 package worldcuptournament;
 
-import java.util.ArrayList;
-import java.util.Scanner;
-
-
-
-/**
- *
- * @author manny
- */
 public class Team {
+  
     private String name;
     private String group;
 
@@ -34,4 +26,5 @@ public class Team {
         this.group = group;
     
     }
+
 }

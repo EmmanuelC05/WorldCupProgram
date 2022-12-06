@@ -1,7 +1,4 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
- */
+
 package worldcuptournament;
 
 /**
@@ -11,12 +8,15 @@ package worldcuptournament;
 public class Match {
     private String team1;
     private String team2;
-    private int[] Results;
+    private int score1;
+    private int score2;
 
-    public Match(String team1, String team2, int[] Results) {
+   //int [] results
+    public Match(String team1, String team2, int score1, int score2) {
         this.team1 = team1;
         this.team2 = team2;
-        this.Results = Results;
+        this.score1 = score1;
+        this.score2 = score2;
     }
 
     public String getTeam1() {
@@ -34,16 +34,21 @@ public class Match {
     public void setTeam2(String team2) {
         this.team2 = team2;
     }
-
-    public int[] getResults() {
-        return Results;
+    public int getScore1() {
+        return score1;
     }
 
-    public void setResults(int[] Results) {
-        this.Results = Results;
+    public void setScore1(int score1) {
+        this.score1 = score1;
     }
-    
-    
-    
-    
+
+    public int getScore2() {
+        return score2;
+    }
+
+    public void setScore2(int score2) {
+        this.score2 = score2;
+    }
 }
+ 
+
