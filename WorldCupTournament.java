@@ -1,14 +1,12 @@
 
 package worldcuptournament;
-import java.text.ParseException;
-import java.util.ArrayList;
-import java.util.Date;
-import java.text.SimpleDateFormat;
-import java.util.Scanner;
 
+import java.util.ArrayList;
+import java.util.Scanner;
+import java.util.InputMismatchException;
         
 public class WorldCupTournament {
-    private static final SimpleDateFormat dateFormat = new SimpleDateFormat ("MM/dd/YY");
+    
     static ArrayList<Team> teams = new ArrayList<>();
     static ArrayList<Match> matches = new ArrayList<>();
     static ArrayList<PlayoffMatch> playoffMatches = new ArrayList<>();
@@ -20,7 +18,9 @@ public class WorldCupTournament {
         int input = 0;
         
       while (input!=7){
-        System.out.println("Official tracker for the FIFA world cup\n");
+        System.out.println("============================================");
+        System.out.println("  Official tracker for the FIFA world cup");
+        System.out.println("============================================\n");
         System.out.println("(1) Add a team and their corresponding group");
         System.out.println("(2) View teams");
         System.out.println("(3) Add group stage matches");
@@ -28,10 +28,13 @@ public class WorldCupTournament {
         System.out.println("(5) Add Playoff matches");
         System.out.println("(6) View playoff Matches and their results");
         System.out.println("(7) Exit\n");
-        System.out.print("Select an option from above: ");
-        input = keyboard.nextInt();
+        System.out.println("Select an option from above: ");
         
-       
+
+        
+        try{
+            input = keyboard.nextInt();
+            
         switch (input)
         {
             case 1:
@@ -52,11 +55,21 @@ public class WorldCupTournament {
             case 6:
                 viewPlayoffMatchResults();  
                 break;
-                
-                
-           
+            default: 
+                System.out.println("Choose a valid option numbers 1-7");
+            
+        }  
+        }  catch(InputMismatchException e){
+            System.out.println("Enter Intagers only please try again");
+            keyboard.next();
         }
-    }
+            
+        }
+               
+        
+       
+       
+    
     }
     
     static public void addTeam() {
@@ -76,9 +89,11 @@ public class WorldCupTournament {
     }
     
     static public void viewTeams() {
-        System.out.println("-------------------------");
         
-        for (int i = 0; i < teams.size(); i++) {
+        System.out.println("============================================");
+        System.out.println("   World Cup competing Countries");
+        System.out.println("============================================");
+          for (int i = 0; i < teams.size(); i++) {
             System.out.println("Country: " + teams.get(i).getName());
             System.out.println("Group: " + teams.get(i).getGroup());
             System.out.println("-------------------------");
@@ -92,21 +107,9 @@ public class WorldCupTournament {
          
     }
     static public void addMatches(){ 
-        
-//       private static final SimpleDateFormat dateFormat = new SimpleDateFormat("MM/dd/YY");
-
-        Scanner keyboard = new Scanner(System.in);
-        System.out.println("Enter date (mm-dd-yyyy): ");
-        String line = keyboard.nextLine();
-        Date date;
-        try {
-            date = new SimpleDateFormat("mm-dd-yyyy").parse(line);
-        } catch (ParseException ex) {
-            System.out.println("You have to enter date in format mm-dd-yyyy");
-            return;
-        }
+       
         System.out.print("What is the First team name?: ");
-        
+         Scanner keyboard = new Scanner(System.in);
          
          String team1;
          team1 = keyboard.nextLine();
@@ -126,19 +129,19 @@ public class WorldCupTournament {
          int score2;
          score2 = keyboard.nextInt();
          
-         Match matchResult = new Match (team1, team2, score1, score2, date);
+         Match matchResult = new Match (team1, team2, score1, score2);
          matches.add(matchResult);
          
       
 }
 
      static public void viewMatchResults() {
-        System.out.println("---------------------------------------------");
-        
+        System.out.println("============================================");
+        System.out.println("          Group stage results");
+        System.out.println("============================================");
         for (int i = 0; i < matches.size(); i++) {
-    
+            
             System.out.println("Match Result: " +matches.get(i).getTeam1()+ ": " +(matches.get(i).getScore1() + "   vs    " +matches.get(i).getTeam2()+ ": " +matches.get(i).getScore2()));
-            System.out.println("Played on:" +matches.get(i).getDate());
             System.out.println("-------------------------------------------");
             
 }
@@ -180,13 +183,14 @@ public class WorldCupTournament {
          
 }
      static public void viewPlayoffMatchResults(){
-        System.out.println("---------------------------------------------");
-        System.out.println("These are the group stage match results");
-        System.out.println("---------------------------------------------");
-        System.out.println("---------------------------------------------");
+        System.out.println("============================================");
+        System.out.println("   These are the Playoff match results");
+        System.out.println("============================================");
+        System.out.println("-------------------------------------------");
+         
         for (int i = 0; i < playoffMatches.size(); i++) {
             System.out.println("Round of (" +playoffMatches.get(i).getRound()+ ")");
-            System.out.println("Results: " +playoffMatches.get(i).getPlayoffTeam1()+ ": " +(playoffMatches.get(i).getPlayoffScore1() + "   vs    " +playoffMatches.get(i).getPlayoffTeam2()+ ": " +playoffMatches.get(i).getPlayoffScore2()));
+            System.out.println("Results: " +playoffMatches.get(i).getTeam1()+ ": " +(playoffMatches.get(i).getScore1() + "   vs    " +playoffMatches.get(i).getTeam2()+ ": " +playoffMatches.get(i).getScore2()));
             System.out.println("-------------------------------------------");
          
      }

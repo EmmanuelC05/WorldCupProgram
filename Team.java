@@ -1,5 +1,4 @@
 package worldcuptournament;
-
 public class Team {
   
     private String name;
